@@ -1,3 +1,5 @@
 <can-import from="can-stache/helpers/route" />
 <h5><a href="{{routeUrl page='home'}}">Home</a></h5>
 <p>{{message}}</p>
+<can-import from="donejs-plugin-codemirror" />
+<donejs-plugin-codemirror></donejs-plugin-codemirror>
