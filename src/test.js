@@ -3,6 +3,8 @@ import QUnit from 'steal-qunit';
 
 import 'donejs-online-ide/models/test';
 
+import 'donejs-online-ide/editor/editor-test';
+
 F.attach(QUnit);
 
 QUnit.module('donejs-online-ide functional smoke test', {

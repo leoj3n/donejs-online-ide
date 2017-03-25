@@ -6,7 +6,23 @@
     <can-import from="donejs-online-ide/styles.less" />
     <can-import from="donejs-online-ide/app" export-as="viewModel" />
 
-    <h1>{{message}}</h1>
+    {{#eq page 'editor'}}
+      <can-import from="donejs-online-ide/editor/">
+        {{#if isPending}}
+          Loading...
+        {{else}}
+          <ide-editor/>
+        {{/if}}
+      </can-import>
+    {{else}}
+      <can-import from="donejs-online-ide/home.component">
+        {{#if isPending}}
+          Loading...
+        {{else}}
+          <ide-home/>
+        {{/if}}
+      </can-import>
+    {{/eq}}
 
     {{#switch env.NODE_ENV}}
       {{#case "production"}}

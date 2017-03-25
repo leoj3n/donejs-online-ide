@@ -3,14 +3,13 @@ import route from 'can-route';
 import 'can-route-pushstate';
 
 const AppViewModel = DefineMap.extend({
-  message: {
-    value: 'Hello World!',
-    serialize: false
-  },
+  page: 'string',
   title: {
     value: 'donejs-online-ide',
     serialize: false
   }
 });
+
+route('/{page}', { page: 'home' });
 
 export default AppViewModel;
