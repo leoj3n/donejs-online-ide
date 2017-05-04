@@ -65,6 +65,7 @@
     "done-css": "^3.0.0",
     "done-serve": "^1.0.0",
     "donejs-plugin-codemirror": "github:leoj3n/donejs-plugin-codemirror#master",
+    "donejs-xterm": "git+https://github.com/imaustink/donejs-xterm.git",
     "generator-donejs": "^1.0.0",
     "steal": "^1.3.1",
     "steal-less": "^1.2.0",
