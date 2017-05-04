@@ -6,8 +6,6 @@ import view from './editor.stache';
 
 const terminal = new Xterm();
 
-terminal.api.writeln('Hello World!');
-
 export const ViewModel = DefineMap.extend({
 	message: {
 		value: 'This is the ide-editor component'
