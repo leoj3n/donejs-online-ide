@@ -68,6 +68,7 @@
     "donejs-plugin-codemirror": "github:leoj3n/donejs-plugin-codemirror#master",
     "feathers-authentication-client": "^0.3.2",
     "feathers-hooks": "^2.0.1",
+    "donejs-xterm": "git+https://github.com/imaustink/donejs-xterm.git",
     "generator-donejs": "^1.0.0",
     "steal": "^1.3.1",
     "steal-less": "^1.2.0",

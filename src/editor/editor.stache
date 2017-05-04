@@ -12,3 +12,4 @@
 {{/if}}
 <can-import from="donejs-plugin-codemirror" />
 <donejs-plugin-codemirror></donejs-plugin-codemirror>
+<donejs-xterm/>
