@@ -1,4 +1,127 @@
+@defaultFontFamily: "Helvetica Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+@smartphones: ~"only screen and (max-width: 767px)";
+@desktops: ~"only screen and (min-width: 767px)";
+@fontColor: rgb(200, 200, 200);
+@linkColor: rgb(169, 218, 250);
+
+.flex-mixin {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+html {
+	height: 100%;
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit; // https://css-tricks.com/box-sizing/
+}
+
 body {
-  font-family: "Helvetica Neue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+	.flex-mixin;
+	width: 100%;
+	height: 100vh;
+	margin: auto;
+	flex-direction: column;
+	justify-content: space-between;
+	font-family: @defaultFontFamily;
+  color: @fontColor;
+  background: rgb(30, 30, 30);
+}
+
+a:link, a:visited, a:hover, a:active {
+  color: @linkColor;
+}
+
+header, footer {
+	width: 100%;
+	flex-shrink: 0; // retain height
+  font-size: 12px;
+  padding: 6px;
+}
+
+header {
+  margin: auto;
+  text-align: center;
+  background: rgb(48, 48, 48);
+}
+
+footer {
+  background: rgb(52, 120, 198);
+}
+
+.content {
+	flex-grow: 1; // fill space vertical
+	flex-shrink: 1; // IE10 sets flex-shrink to 0
+
+	@media @desktops {
+		.flex-mixin;
+		overflow: auto; // scroll .content when .main overflows
+	}
+
+	.sidebar {
+    background: rgb(37, 37, 38);
+		overflow: auto; // scroll .sidebar when <ul> overflows
+		flex-shrink: 0; // retain width
+
+		.current>a {
+			font-weight: bold;
+		}
+
+    a {
+      display: block;
+      font-size: 14px;
+      color: @fontColor;
+      text-decoration: none;
+      padding: 3px;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    a:hover {
+      background: rgb(43, 45, 46);
+    }
+	}
+
+	.main {
+		flex-grow: 1; // fill space horizontal
+		flex-shrink: 1;
+		overflow-x: hidden; // hide <pre> code overflow
+	}
+}
+
+.caps {
   font-weight: 300;
+  display: block;
+  padding: 16px;
+  text-transform: uppercase;
+}
+
+ide-editor {
+	.flex-mixin;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	flex-direction: column;
+	justify-content: space-between
+}
+
+donejs-plugin-codemirror {
+  height: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-height: 300px;
+
+  .CodeMirror {
+    min-height: 300px;
+    height: 100% !important;
+    border-bottom: 1px solid rgb(65, 65, 65) !important;
+  }
+}
+
+donejs-xterm {
+	flex-shrink: 0; // retain height
 }

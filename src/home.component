@@ -1,14 +1,3 @@
 <can-component tag="ide-home">
-  <style type="less">
-    display: block;
-
-    p { font-weight: bold; }
-  </style>
-  <view>
-    <can-import from="can-stache/helpers/route" />
-    <a href="{{routeUrl page='editor' }}"
-       class="btn btn-primary btn-block btn-lg">
-      Start IDE
-    </a>
-  </view>
+  <view></view>
 </can-component>

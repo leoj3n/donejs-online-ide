@@ -1,36 +1,63 @@
-<html>
-  <head>
-    <title>{{title}}</title>
-  </head>
-  <body>
-    <can-import from="donejs-online-ide/styles.less" />
-    <can-import from="donejs-online-ide/app" export-as="viewModel" />
-
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  <title>{{title}}</title>
+</head>
+<body>
+  <can-import from="can-stache/helpers/route" />
+  <can-import from="donejs-online-ide/styles.less" />
+  <can-import from="donejs-online-ide/app" export-as="viewModel" />
+	<header>
+    DoneJS IDE - 
     {{#eq page 'editor'}}
-      <can-import from="donejs-online-ide/editor/">
-        {{#if isPending}}
-          Loading...
-        {{else}}
-          <ide-editor/>
-        {{/if}}
-      </can-import>
+      <a href="{{routeUrl page='home'}}">Home</a>
     {{else}}
-      <can-import from="donejs-online-ide/home.component">
-        {{#if isPending}}
-          Loading...
-        {{else}}
-          <ide-home/>
-        {{/if}}
-      </can-import>
+      <a href="{{routeUrl page='editor' }}">Start IDE</a>
     {{/eq}}
-
-    {{#switch env.NODE_ENV}}
-      {{#case "production"}}
-        <script src="{{joinBase 'steal.production.js'}}"></script>
-      {{/case}}
-      {{#default}}
-        <script src="/node_modules/steal/steal.js"></script>
-      {{/default}}
-    {{/switch}}
-  </body>
+  </header>
+  <div class="content">
+    {{#eq page 'editor'}}
+    <nav class="sidebar">
+      <span class="caps">Explorer</span>
+      {{#if *filesPromise.isResolved}}
+        {{#each *filesPromise.value}}
+          <a href="javascript:void(0)">{{id}}</a>
+        {{/each}}
+      {{else}}
+        <div>No files</div>
+      {{/if}}
+    </nav>
+    {{/eq}}
+    <article class="main">
+      {{#eq page 'editor'}}
+        <can-import from="donejs-online-ide/editor/">
+          {{#if isPending}}
+            Loading...
+          {{else}}
+            <ide-editor {^files-promise}="*filesPromise"/>
+          {{/if}}
+        </can-import>
+      {{else}}
+        <can-import from="donejs-online-ide/home.component">
+          {{#if isPending}}
+            Loading...
+          {{else}}
+            <ide-home/>
+          {{/if}}
+        </can-import>
+      {{/eq}}
+    </article>
+  </div>
+	<footer>
+    Made by Bitovi 
+  </footer>
+  {{#switch env.NODE_ENV}}
+    {{#case "production"}}
+      <script src="{{joinBase 'steal.production.js'}}"></script>
+    {{/case}}
+    {{#default}}
+      <script src="/node_modules/steal/steal.js"></script>
+    {{/default}}
+  {{/switch}}
+</body>
 </html>

@@ -1,14 +1,12 @@
 import Component from 'can-component';
 import DefineMap from 'can-define/map/';
-import { Xterm } from 'donejs-xterm';
 import './editor.less';
 import view from './editor.stache';
 import Files from '../models/files';
 import loader from '@loader';
 
-const terminal = new Xterm();
-
 export const ViewModel = DefineMap.extend({
+  xterm: 'any',
   message: {
     value: 'This is the ide-editor component'
   },
@@ -32,12 +30,22 @@ export default Component.extend({
   ViewModel,
   view,
   events: {
-    inserted(el) {
+    inserted: function (el) {
+      var vm = this.viewModel;
       if (System.isPlatform("window")) {
-        this.viewModel.cmdRunner('ls -la').then(function (response) {
-          terminal.api.write(response.replace(/\r?\n/g, "\r\n"));
-        }).catch(function (err) {
-          console.log('COMMAND RUNNER ERROR', err);
+        vm.xterm.on('key', function (key, ev) {
+          if (ev.keyCode === 13) {
+            var promptLine = vm.xterm.lines.get(vm.xterm.ybase + vm.xterm.y)
+              .slice(2);
+            var commandToSend = promptLine.map((item) => item[1]).join('');
+            console.log('ENTER EVENT', commandToSend);
+            vm.cmdRunner(commandToSend).then(function (response) {
+              vm.xterm.write(response.replace(/\r?\n/g, "\r\n"));
+              vm.xterm.prompt();
+            }).catch(function (err) {
+              console.log('COMMAND RUNNER ERROR', err);
+            });
+          }
         });
       }
     }

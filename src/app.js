@@ -5,7 +5,7 @@ import 'can-route-pushstate';
 const AppViewModel = DefineMap.extend({
   page: 'string',
   title: {
-    value: 'donejs-online-ide',
+    value: 'DoneJS IDE',
     serialize: false
   }
 });
