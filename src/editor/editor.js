@@ -40,7 +40,9 @@ export default Component.extend({
             var commandToSend = promptLine.map((item) => item[1]).join('');
             console.log('ENTER EVENT', commandToSend);
             vm.cmdRunner(commandToSend).then(function (response) {
+              vm.xterm.writeln("\r\n");
               vm.xterm.write(response.replace(/\r?\n/g, "\r\n"));
+              vm.xterm.writeln('');
               vm.xterm.prompt();
             }).catch(function (err) {
               console.log('COMMAND RUNNER ERROR', err);
