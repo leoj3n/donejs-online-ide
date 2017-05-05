@@ -2,6 +2,8 @@
 
 Welcome to the donejs-online-ide DoneJS application!
 
+![DoneJS IDE](.github/DoneJS-IDE.png)
+
 ## Getting started
 
 To install all dependencies, (e.g. after cloning it from a Git repository) run
