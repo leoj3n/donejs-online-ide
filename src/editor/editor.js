@@ -7,6 +7,13 @@ import loader from '@loader';
 
 export const ViewModel = DefineMap.extend({
   xterm: 'any',
+	body: {
+		type: 'string',
+		set: function (newval) {
+			console.log('HELLO', newval);
+      return 'var wouldLoadFileIfConnectedAPI = "'+newval+'";';
+		}
+  },
   message: {
     value: 'This is the ide-editor component'
   },
@@ -29,6 +36,11 @@ export default Component.extend({
   tag: 'ide-editor',
   ViewModel,
   view,
+  helpers: {
+    filePathHelper: function (bangPath){
+      return 'TODO: replace band with slash';
+    }
+  },
   events: {
     inserted: function (el) {
       var vm = this.viewModel;

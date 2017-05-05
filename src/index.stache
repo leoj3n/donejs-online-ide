@@ -21,7 +21,7 @@
       <span class="caps">Explorer</span>
       {{#if *filesPromise.isResolved}}
         {{#each *filesPromise.value}}
-          <a href="javascript:void(0)">{{id}}</a>
+          <a ($click)="fileClicked( id )">{{id}}</a>
         {{/each}}
       {{else}}
         <div>Loading...</div>
@@ -34,7 +34,7 @@
           {{#if isPending}}
             Loading...
           {{else}}
-            <ide-editor {^files-promise}="*filesPromise"/>
+            <ide-editor {(body)}="body" {^files-promise}="*filesPromise"/>
           {{/if}}
         </can-import>
       {{else}}

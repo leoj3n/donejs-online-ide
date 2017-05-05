@@ -1,4 +1,4 @@
 <can-import from="donejs-plugin-codemirror" />
-<donejs-plugin-codemirror></donejs-plugin-codemirror>
+<donejs-plugin-codemirror {(body)}="body" />
 <can-import from="donejs-xterm" />
 <donejs-xterm prompt="❯ " fit="yes" {(terminal)}="xterm" />
